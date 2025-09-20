@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobileShop - Мобильные аксессуары</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Каталог слева -->
+                <div class="catalog-section">
+                    <button class="catalog-btn" id="catalogBtn">
+                        <i class="fas fa-bars"></i>
+                        <span>Каталог</span>
+                    </button>
+                </div>
+
+                <!-- Логотип -->
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>MobileShop</span>
+                </div>
+
+                <!-- Поиск по центру -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Поиск товаров...">
+                        <button class="search-btn" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="search-filters">
+                        <select id="categoryFilter">
+                            <option value="">Все категории</option>
+                            <option value="screen-protectors">Защитные стекла</option>
+                            <option value="chargers">Зарядки</option>
+                            <option value="batteries">Батареи</option>
+                            <option value="cases">Чехлы</option>
+                            <option value="cables">Кабели</option>
+                            <option value="headphones">Наушники</option>
+                        </select>
+                        <select id="priceFilter">
+                            <option value="">Любая цена</option>
+                            <option value="0-500">До 500₴</option>
+                            <option value="500-1500">500-1500₴</option>
+                            <option value="1500-5000">1500-5000₴</option>
+                            <option value="5000+">От 5000₴</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Правая панель -->
+                <div class="user-section">
+                    <button class="user-btn cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="user-btn account-btn" id="accountBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="user-btn admin-btn" id="adminBtn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Выдвижной каталог -->
+    <div class="catalog-sidebar" id="catalogSidebar">
+        <div class="catalog-header">
+            <h3>Каталог товаров</h3>
+            <button class="close-catalog" id="closeCatalog">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="catalog-content">
+            <div class="catalog-category">
+                <h4><i class="fas fa-shield-alt"></i> Защитные стекла</h4>
+                <ul>
+                    <li><a href="#" data-category="screen-protectors" data-subcategory="iphone">Для iPhone</a></li>
+                    <li><a href="#" data-category="screen-protectors" data-subcategory="samsung">Для Samsung</a></li>
+                    <li><a href="#" data-category="screen-protectors" data-subcategory="xiaomi">Для Xiaomi</a></li>
+                    <li><a href="#" data-category="screen-protectors" data-subcategory="universal">Универсальные</a></li>
+                </ul>
+            </div>
+            <div class="catalog-category">
+                <h4><i class="fas fa-bolt"></i> Зарядки</h4>
+                <ul>
+                    <li><a href="#" data-category="chargers" data-subcategory="wireless">Беспроводные</a></li>
+                    <li><a href="#" data-category="chargers" data-subcategory="fast">Быстрые зарядки</a></li>
+                    <li><a href="#" data-category="chargers" data-subcategory="car">Автомобильные</a></li>
+                    <li><a href="#" data-category="chargers" data-subcategory="portable">Портативные</a></li>
+                </ul>
+            </div>
+            <div class="catalog-category">
+                <h4><i class="fas fa-battery-full"></i> Батареи</h4>
+                <ul>
+                    <li><a href="#" data-category="batteries" data-subcategory="powerbank">Power Bank</a></li>
+                    <li><a href="#" data-category="batteries" data-subcategory="replacement">Замена батарей</a></li>
+                    <li><a href="#" data-category="batteries" data-subcategory="solar">Солнечные</a></li>
+                </ul>
+            </div>
+            <div class="catalog-category">
+                <h4><i class="fas fa-mobile-alt"></i> Чехлы</h4>
+                <ul>
+                    <li><a href="#" data-category="cases" data-subcategory="silicone">Силиконовые</a></li>
+                    <li><a href="#" data-category="cases" data-subcategory="leather">Кожаные</a></li>
+                    <li><a href="#" data-category="cases" data-subcategory="rugged">Противоударные</a></li>
+                    <li><a href="#" data-category="cases" data-subcategory="wallet">Кошельки</a></li>
+                </ul>
+            </div>
+            <div class="catalog-category">
+                <h4><i class="fas fa-plug"></i> Кабели</h4>
+                <ul>
+                    <li><a href="#" data-category="cables" data-subcategory="lightning">Lightning</a></li>
+                    <li><a href="#" data-category="cables" data-subcategory="usb-c">USB-C</a></li>
+                    <li><a href="#" data-category="cables" data-subcategory="micro-usb">Micro USB</a></li>
+                </ul>
+            </div>
+            <div class="catalog-category">
+                <h4><i class="fas fa-headphones"></i> Наушники</h4>
+                <ul>
+                    <li><a href="#" data-category="headphones" data-subcategory="wireless">Беспроводные</a></li>
+                    <li><a href="#" data-category="headphones" data-subcategory="wired">Проводные</a></li>
+                    <li><a href="#" data-category="headphones" data-subcategory="gaming">Игровые</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main">
+        <div class="container">
+            <!-- Баннер со скидками -->
+            <section class="banner-section">
+                <div class="banner">
+                    <h2>🔥 Супер скидки до 50%!</h2>
+                    <p>На все защитные стекла и зарядные устройства</p>
+                </div>
+            </section>
+
+            <!-- Популярные категории -->
+            <section class="categories-section">
+                <h2>Популярные категории</h2>
+                <div class="categories-grid">
+                    <div class="category-card" data-category="screen-protectors">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Защитные стекла</h3>
+                        <p>От 299₴</p>
+                    </div>
+                    <div class="category-card" data-category="chargers">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Зарядки</h3>
+                        <p>От 599₴</p>
+                    </div>
+                    <div class="category-card" data-category="batteries">
+                        <i class="fas fa-battery-full"></i>
+                        <h3>Power Bank</h3>
+                        <p>От 1299₴</p>
+                    </div>
+                    <div class="category-card" data-category="cases">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Чехлы</h3>
+                        <p>От 399₴</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Товары -->
+            <section class="products-section">
+                <div class="section-header">
+                    <h2>Наши товары</h2>
+                    <div class="sort-options">
+                        <select id="sortSelect">
+                            <option value="default">По умолчанию</option>
+                            <option value="price-asc">Цена: по возрастанию</option>
+                            <option value="price-desc">Цена: по убыванию</option>
+                            <option value="name">По названию</option>
+                            <option value="newest">Сначала новые</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Товары будут загружены динамически -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Модальное окно корзины -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Корзина</h3>
+                <button class="close-btn" id="closeCartModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cartItems">
+                    <!-- Товары в корзине -->
+                </div>
+                <div class="cart-total">
+                    <div class="total-price">
+                        Итого: <span id="totalPrice">0₴</span>
+                    </div>
+                    <button class="checkout-btn">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно аккаунта -->
+    <div class="modal" id="accountModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Личный кабинет</h3>
+                <button class="close-btn" id="closeAccountModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="account-form">
+                    <input type="text" placeholder="Имя" id="userName">
+                    <input type="email" placeholder="Email" id="userEmail">
+                    <input type="tel" placeholder="Телефон" id="userPhone">
+                    <button class="save-btn">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Админ панель -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content admin-modal">
+            <div class="modal-header">
+                <h3>Админ панель</h3>
+                <button class="close-btn" id="closeAdminModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="upload">Загрузка товаров</button>
+                    <button class="tab-btn" data-tab="manage">Управление</button>
+                    <button class="tab-btn" data-tab="stats">Статистика</button>
+                </div>
+
+                <!-- Вкладка загрузки -->
+                <div class="tab-content active" id="uploadTab">
+                    <div class="upload-section">
+                        <h4>Загрузить файл с товарами</h4>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Перетащите файл сюда или нажмите для выбора</p>
+                            <p class="file-types">Поддерживаются: Excel (.xlsx, .xls), CSV, TXT, PDF</p>
+                            <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.txt,.pdf" multiple>
+                        </div>
+                        <div class="upload-status" id="uploadStatus"></div>
+                    </div>
+                </div>
+
+                <!-- Вкладка управления -->
+                <div class="tab-content" id="manageTab">
+                    <div class="manage-section">
+                        <h4>Управление товарами</h4>
+                        <div class="manage-controls">
+                            <button class="btn-action" id="clearAllProducts">
+                                <i class="fas fa-trash"></i> Очистить все товары
+                            </button>
+                            <button class="btn-action" id="exportProducts">
+                                <i class="fas fa-download"></i> Экспорт в Excel
+                            </button>
+                        </div>
+                        <div class="products-table" id="productsTable">
+                            <!-- Таблица товаров для редактирования -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вкладка статистики -->
+                <div class="tab-content" id="statsTab">
+                    <div class="stats-section">
+                        <h4>Статистика</h4>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h3 id="totalProducts">0</h3>
+                                <p>Всего товаров</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 id="totalCategories">0</h3>
+                                <p>Категорий</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 id="averagePrice">0₴</h3>
+                                <p>Средняя цена</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 id="totalValue">0₴</h3>
+                                <p>Общая стоимость</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay для каталога -->
+    <div class="catalog-overlay" id="catalogOverlay"></div>
+
+    <!-- Библиотеки -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
